@@ -1,0 +1,20 @@
+services:
+    api:
+        build:
+            context: ./
+            target: "production-stage"
+        image: alhamdou-jallow/express:4.x
+        # container_name: name-test
+        restart: unless-stopped
+        ports:
+            - 4001:${APP_PORT}
+        volumes:
+            - ./:/app
+            - /app/node_modules
+        env_file:
+            - .env.test
+
+networks:
+    default:
+        external: true
+        name: webproxy

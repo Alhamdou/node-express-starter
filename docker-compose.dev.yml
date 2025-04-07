@@ -1,0 +1,15 @@
+services:
+    api:
+        build:
+            context: ./
+            target: "development-stage"
+        image: alhamdou-jallow/express:4.x
+        # container_name: name-dev
+        restart: unless-stopped
+        ports:
+            - 3000:${APP_PORT}
+        volumes:
+            - ./:/app
+            - /app/node_modules
+        env_file:
+            - .env.development
